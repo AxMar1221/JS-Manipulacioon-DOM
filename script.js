@@ -8,6 +8,7 @@ console.log(btn);
 
 btn.addEventListener('click', (e) => {
     e.preventDefault(btn)
-    console.log('create TODO')
+    const input = document.querySelector("[data-form-input]");
+    console.log(input.value);
 })
 
