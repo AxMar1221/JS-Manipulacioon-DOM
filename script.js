@@ -15,20 +15,17 @@ window.addEventListener("load", () => {
     input.value = "";
 
     const taskContent = document.createElement("div");
-    taskContent.appendChild(checkComplete());
 
     const titleTask = document.createElement("span");
     titleTask.classList.add("task");
     titleTask.innerText = value;
+
+    taskContent.appendChild(checkComplete());
     taskContent.appendChild(titleTask);
-
-    const content = `
-    <i class="fas fa-trash-alt trashIcon icon"></i>`;
-
     task.appendChild(taskContent);
+    task.appendChild(deleteTaskIcon());
     list.appendChild(task);
 
-    console.log(value);
   };
 
   btn.addEventListener("click", createTask);
@@ -36,7 +33,7 @@ window.addEventListener("load", () => {
   const checkComplete = () => {
     const i = document.createElement("i");
     i.classList.add("far", "fa-check-square", "icon");
-    i.addEventListener("click", completeTask);
+    i.addEventListener("click", deleteTask);
 
     return i;
   };
@@ -47,4 +44,16 @@ window.addEventListener("load", () => {
     ele.classList.toggle("completeIcon");
     ele.classList.toggle("far");
   };
+
+  const deleteTaskIcon = () => {
+    const i = document.createElement("i");
+    i.classList.add("fas", "fa-trash-alt", "trashIcon", "icon");
+    i.addEventListener("click", deleteTask)
+    return i;
+  };
+
+  const deleteTask = (event) => {
+    const parent = event.target.parentElement;
+    parent.remove();
+  }
 })();
